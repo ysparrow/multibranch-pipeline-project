@@ -25,7 +25,7 @@ pipeline {
         stage('Create network') {
             agent any
             steps {
-                sh './create_network.sh'
+                sh 'sh ./create_network.sh'
             }
         }
         stage('Test') {
