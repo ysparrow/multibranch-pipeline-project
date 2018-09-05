@@ -60,6 +60,7 @@ pipeline {
                 branch 'prod'
             }
             steps {
+                input message: 'Click proceed to continue'
                 sh 'echo Deploying to Prod...'
                 sh 'echo Deployed to Prod!'
             }
