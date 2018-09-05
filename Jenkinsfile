@@ -47,6 +47,28 @@ pipeline {
     }
 }
 
+stage('Deploy for Dev') {
+            agent any
+            when {
+                branch 'dev'
+            }
+            steps {
+                sh 'echo Deploying to dev...'
+                sh 'echo Deployed to Dev!'
+            }
+        }
+        stage('Deploy for Prod') {
+		 agent any
+            when {
+                branch 'prod'
+            }
+            steps {
+                input message: 'Click proceed to continue'
+                sh 'echo Deploying to Prod...'
+                sh 'echo Deployed to Prod!'
+            }
+        }
+
 
     }
 }
