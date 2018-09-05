@@ -11,5 +11,18 @@ pipeline {
                 sh 'echo web built'
             }
         }
+
+        stage('Build Test Env') {
+            agent {
+                dockerfile {
+                    dir 'tests'
+                    additionalBuildArgs '-t test_env'
+                }
+            }
+            steps {
+                sh 'echo test env container was built'
+            }
+        }
+
     }
 }
