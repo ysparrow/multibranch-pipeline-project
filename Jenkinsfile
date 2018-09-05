@@ -23,6 +23,13 @@ pipeline {
                 sh 'echo test env container was built'
             }
         }
+        stage('Create network') {
+            agent any
+            steps {
+                sh 'sh ./create_network.sh'
+            }
+        }
+
 
     }
 }
