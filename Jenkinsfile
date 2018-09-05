@@ -1,9 +1,14 @@
 pipeline {
-    agent any
+    agent none
     stages {
-        stage('Build') {
+        stage('Build web') {
+            agent {
+                dockerfile {
+                    additionalBuildArgs '-t web'
+                }
+            }
             steps {
-                sh 'echo "Hello world!"'
+                sh 'echo web built'
             }
         }
     }
