@@ -30,6 +30,23 @@ pipeline {
             }
         }
 
+        stage('Test') {
+    agent any
+    steps {
+        sh 'docker run --rm --network net -p 6379:6379 --name redis -d redis'
+        sh 'echo Redis started!'
+        sh 'docker run --rm --network net -p 80:80 --name web -d web'
+        sh 'echo Web started!'
+        sh 'docker run --network net test_env'
+    }
+    post {
+        always {
+            sh 'docker kill web 2>/dev/null || true'
+            sh 'docker kill redis 2>/dev/null || true'
+        }
+    }
+}
+
 
     }
 }
